@@ -1,6 +1,4 @@
 <?php
-
-
 // $handle = fopen('test.txt', 'r');
 
 while (!feof($_fp)) {
