@@ -58,3 +58,30 @@ function isAnagram($s, $t): bool {
 
 /*********************************************************************************************************************************************/
 
+// 3) 1. Two Sum   // https://leetcode.com/problems/two-sum/
+
+/**
+ * @param Integer[] $nums
+ * @param Integer $target
+ * @return Integer[]
+ */
+function twoSum($nums, $target) {
+    // Create a hash table (associative array) to store each element's value and its index
+    $numsArrayIndicesHashTableArray = [];
+
+    // One pass (one loop): check if each element's complement exists in the hash table
+    foreach ($nums as $numIndex => $num) {
+        $numComplement = $target - $num;
+
+        if (isset($numsArrayIndicesHashTableArray[$numComplement])) { // In the One-pass Hash Table approach, we don't need to check if the complement is not the same element as the current element because we're checking the complement after we've stored the current element in the hash table (i.e., we first check if the complement exists in the hash table before storing the current number. If the complement is found, it means that the complement was stored in a previous iteration.)
+            return [$numsArrayIndicesHashTableArray[$numComplement], $numIndex]; // return the indices pair array, STOP looping and Exit the function
+        }
+    
+        $numsArrayIndicesHashTableArray[$num] = $numIndex; // Store each element's value (as 'array key') and its index (as 'array value') in the hash table
+    }
+
+
+    return [];
+}
+
+/*********************************************************************************************************************************************/
