@@ -58,7 +58,7 @@ function isAnagram($s, $t): bool {
 
 /*********************************************************************************************************************************************/
 
-// 3) 1. Two Sum   // https://leetcode.com/problems/two-sum/
+// 3) 1. Two Sum    // https://leetcode.com/problems/two-sum/
 
 /**
  * @param Integer[] $nums
@@ -82,6 +82,31 @@ function twoSum($nums, $target) {
 
 
     return [];
+}
+
+/*********************************************************************************************************************************************/
+
+// 4) 49. Group Anagrams    // https://leetcode.com/problems/group-anagrams/
+
+/**
+ * @param String[] $strs
+ * @return String[][]
+ */
+function groupAnagrams($strs) {
+    // This approah utilizes the fact that a Hash Table (associative array) keys can't be duplicated (unique), and anagrams share the same sorted character sequence (unique)
+    $groupedAnagramsArray = [];
+
+    foreach ($strs as $str) {
+        $splittedStrArray = str_split($str); // e.g. Turn 'eat' into ['e', 'a', 't']
+        sort($splittedStrArray); // sort() PHP function modifies the original array (hence the & reference ampersand sign (mentioned by the IDE autocompletion, not me!))    // e.g. Turn ['e', 'a', 't'] into ['a', 'e', 't']
+        $sortedStr = implode('', $splittedStrArray); // Convert the sorted array back into a sorted string    // e.g. Turn ['a', 'e', 't'] into 'aet'
+        // echo '<pre>'; var_dump($sortedStr); echo '</pre>'; exit;
+        $groupedAnagramsArray[$sortedStr][] = $str; // Since the keys of the hash table (associative array) are unique (can't be duplicated)
+    }
+    // echo '<pre>'; var_dump($groupedAnagramsArray); echo '</pre>';
+
+
+    return $groupedAnagramsArray;
 }
 
 /*********************************************************************************************************************************************/
